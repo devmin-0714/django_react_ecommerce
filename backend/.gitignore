@@ -4,6 +4,6 @@
 # poetry
 .poetry.lock
 
-__pycache__/
+__pycache__
 .idea/
 db.sqlite3
