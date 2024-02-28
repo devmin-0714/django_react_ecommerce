@@ -1,0 +1,9 @@
+# pyenv
+.python-version
+
+# poetry
+.poetry.lock
+
+__pycache__/
+.idea/
+db.sqlite3
