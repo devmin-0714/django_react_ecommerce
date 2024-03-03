@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { logout } from '../../utils/auth'
 import { Link } from 'react-router-dom'
 
-
 const Logout = () => {
 
     useEffect(() => {

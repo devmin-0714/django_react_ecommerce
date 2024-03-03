@@ -8,8 +8,6 @@ import Login from './views/auth/Login'
 import Logout from './views/auth/Logout'
 
 function App() {
-    const axios = apiInstance
-
     return (
         <BrowserRouter>
             <StoreHeader />

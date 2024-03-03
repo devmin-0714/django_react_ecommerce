@@ -1,31 +1,44 @@
-import { useState } from 'react';
-import { register } from '../../utils/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react'
+import { register } from '../../utils/auth'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuthStore } from '../../store/auth'
 
-function Register() {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [password2, setPassword2] = useState('');
+const Register = () => {
+    const navigate = useNavigate()
+    const isLoggedIn = useAuthStore((state) => state.isLoggedIn)
+
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [password2, setPassword2] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        if (isLoggedIn()) {
+            navigate('/')
+        }
+    }, [])
 
     const resetForm = () => {
-        setUsername('');
-        setEmail('');
-        setPassword('');
-        setPassword2('');
-    };
+        setUsername('')
+        setEmail('')
+        setPassword('')
+        setPassword2('')
+    }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
+
+        setIsLoading(true)
 
         const { error } = await register(username, email, password, password2);
         if (error) {
-            alert(JSON.stringify(error));
+            alert(JSON.stringify(error))
         } else {
-            navigate('/');
-            resetForm();
+            navigate('/')
+            resetForm()
         }
-    };
+    }
 
     return (
         <>
@@ -100,14 +113,21 @@ function Register() {
                                                         />
                                                     </div>
                                                     <p className='fw-bold text-danger'>
-                                                        {password2 !== password ? 'Passwords do not match' : ''}
+                                                        {password2 !== password ? '비밀번호가 일치하지 않습니다' : ''}
                                                     </p>
 
-                                                    <button className='btn btn-primary w-100' type="submit">
-                                                        <>
-                                                            <span className="mr-2">회원가입</span>
-                                                            <i className="fas fa-user-plus" />
-                                                        </>
+                                                    <button className='btn btn-primary w-100' type="submit" disabled={isLoading}>
+                                                        {isLoading ? (
+                                                            <>
+                                                                <span className="mr-2">회원가입 진행중...</span>
+                                                                <i className="fas fa-spinner fa-spin" />
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <span className="mr-2">회원가입 </span>
+                                                                <i className="fas fa-user-plus" />
+                                                            </>
+                                                        )}
                                                     </button>
 
                                                     <div className="text-center">
@@ -116,7 +136,6 @@ function Register() {
                                                         </p>
                                                     </div>
                                                 </form>
-
                                             </div>
                                         </div>
                                     </div>
@@ -127,9 +146,7 @@ function Register() {
                 </div>
             </main>
         </>
-
-
-    );
+    )
 }
 
-export default Register;
+export default Register

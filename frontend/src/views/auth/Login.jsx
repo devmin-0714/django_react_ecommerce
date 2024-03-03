@@ -1,21 +1,42 @@
-import { useState } from 'react';
-import { login } from '../../utils/auth';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import { login } from '../../utils/auth'
+import { useNavigate } from 'react-router-dom'
+import { useAuthStore } from '../../store/auth'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const navigate = useNavigate()
+    const isLoggedIn = useAuthStore((state) => state.isLoggedIn)
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        if (isLoggedIn()) {
+            navigate('/')
+        }
+    }, [])
+
+    const resetForm = () => {
+        setUsername('')
+        setPassword('')
+    }
 
     const handleLogin = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
+        
+        setIsLoading(true)
 
-        const { error } = await login(username, password);
+        const { error } = await login(username, password)
 
         if (error) {
-            alert(error);
+            alert(error)
+        } else {
+            navigate('/')
+            resetForm()
         }
-
-    };
+        setIsLoading(false)
+    }
 
     return (
         <section>
@@ -67,9 +88,18 @@ const Login = () => {
                                                         />
                                                     </div>
 
-                                                    <button className='btn btn-primary w-100' type="submit">
-                                                            <span className="mr-2">로그인</span>
-                                                            <i className="fas fa-sign-in-alt" />
+                                                    <button className='btn btn-primary w-100' type="submit" disabled={isLoading}>
+                                                    {isLoading ? (
+                                                            <>
+                                                                <span className="mr-2 ">로그인 진행중...</span>
+                                                                <i className="fas fa-spinner fa-spin" />
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <span className="mr-2">로그인 </span>
+                                                                <i className="fas fa-sign-in-alt" />
+                                                            </>
+                                                    )}
                                                     </button>
 
                                                     <div className="text-center">
@@ -91,4 +121,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Login
