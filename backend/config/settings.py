@@ -35,16 +35,20 @@ CORS_ORIGIN_WHITELIST = [
 # Application definition
 
 INSTALLED_APPS = [
+    'drf_yasg',
+    'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'account',
+
     'rest_framework',
     'rest_framework_simplejwt',
-    'drf_yasg',
     'corsheaders',
 ]
 
@@ -172,4 +176,107 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Desphixs",
+    "site_header": "Desphixs",
+    "site_brand": "Modern Marketplace ",
+    "site_icon": "images/favicon.ico",
+    "site_logo": "images/logos/logo.jpg",
+    "welcome_sign": "Welcome To Desphixs",
+    "copyright": "All right reserved to Desphixs",
+    "user_avatar": "images/photos/logo.jpg",
+    "topmenu_links": [
+        {"name": "Dashboard", "url": "home",
+            "permissions": ["auth.view_user"]},
+        {"model": "auth.User"},
+    ],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "order_with_respect_to": [
+        "store",
+        "store.product",
+        "store.cartorder",
+        "store.cartorderitem",
+        "store.cart",
+        "store.category",
+        "store.brand",
+        "store.productfaq",
+        "store.review",
+        "store.Coupon",
+        "store.DeliveryCouriers",
+        "userauths",
+        "userauths.user",
+        "userauths.profile",
+    ],
+    "icons": {
+        "admin.LogEntry": "fas fa-file",
+
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+
+        "userauths.User": "fas fa-user",
+        "userauths.Profile": "fas fa-address-card",
+
+        "store.Product": "fas fa-th",
+        "store.CartOrder": "fas fa-shopping-cart",
+        "store.Cart": "fas fa-cart-plus",
+        "store.CartOrderItem": "fas fa-shopping-basket",
+        "store.Brand": "fas fa-check-circle",
+        "store.productfaq": "fas fa-question",
+        "store.Review": "fas fa-star fa-beat",
+        "store.Category": "fas fa-tag",
+        "store.Coupon": "fas fa-percentage",
+        "store.DeliveryCouriers": "fas fa-truck",
+        "store.Address": "fas fa-location-arrow",
+        "store.Tag": "fas fa-tag",
+        "store.Wishlist": "fas fa-heart",
+        "store.Notification": "fas fa-bell",
+
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-arrow-circle-right",
+    "related_modal_active": False,
+
+    "custom_js": None,
+    "show_ui_builder": False,
+
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "auth.user": "collapsible",
+        "auth.group": "vertical_tabs",
+    },
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": True,
+    "brand_small_text": False,
+    "brand_colour": "navbar-indigo",
+    "accent": "accent-olive",
+    "navbar": "navbar-indigo navbar-dark",
+    "no_navbar_border": False,
+    "navbar_fixed": False,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": False,
+    "sidebar": "sidebar-dark-indigo",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "cyborg",
+    "dark_mode_theme": "cyborg",
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    }
 }
