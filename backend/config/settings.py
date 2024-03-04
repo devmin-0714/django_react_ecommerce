@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'account',
+    'product',
 
     'rest_framework',
     'rest_framework_simplejwt',
@@ -131,6 +132,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -179,14 +185,10 @@ SIMPLE_JWT = {
 }
 
 JAZZMIN_SETTINGS = {
-    "site_title": "Desphixs",
-    "site_header": "Desphixs",
-    "site_brand": "Modern Marketplace ",
-    "site_icon": "images/favicon.ico",
-    "site_logo": "images/logos/logo.jpg",
-    "welcome_sign": "Welcome To Desphixs",
+    "site_title": "Ecommerce",
+    "site_header": "Ecommerce",
+    "site_brand": "Ecommerce",
     "copyright": "All right reserved to Desphixs",
-    "user_avatar": "images/photos/logo.jpg",
     "topmenu_links": [
         {"name": "Dashboard", "url": "home",
             "permissions": ["auth.view_user"]},
@@ -195,45 +197,23 @@ JAZZMIN_SETTINGS = {
     "show_sidebar": True,
     "navigation_expanded": True,
     "order_with_respect_to": [
-        "store",
-        "store.product",
-        "store.cartorder",
-        "store.cartorderitem",
-        "store.cart",
-        "store.category",
-        "store.brand",
-        "store.productfaq",
-        "store.review",
-        "store.Coupon",
-        "store.DeliveryCouriers",
-        "userauths",
-        "userauths.user",
-        "userauths.profile",
+        "account",
+        "account.user",
+        "product",
+        "product.product",
+        "product.productcategory",
+        "product.productbrand",
+        "product.productimage",
+        "product.productoption",
     ],
     "icons": {
         "admin.LogEntry": "fas fa-file",
-
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
-
-        "userauths.User": "fas fa-user",
-        "userauths.Profile": "fas fa-address-card",
-
-        "store.Product": "fas fa-th",
-        "store.CartOrder": "fas fa-shopping-cart",
-        "store.Cart": "fas fa-cart-plus",
-        "store.CartOrderItem": "fas fa-shopping-basket",
-        "store.Brand": "fas fa-check-circle",
-        "store.productfaq": "fas fa-question",
-        "store.Review": "fas fa-star fa-beat",
-        "store.Category": "fas fa-tag",
-        "store.Coupon": "fas fa-percentage",
-        "store.DeliveryCouriers": "fas fa-truck",
-        "store.Address": "fas fa-location-arrow",
-        "store.Tag": "fas fa-tag",
-        "store.Wishlist": "fas fa-heart",
-        "store.Notification": "fas fa-bell",
-
+        "account.User": "fas fa-user",
+        "product.Product": "fas fa-th",
+        "product.ProductBrand": "fas fa-check-circle",
+        "product.ProductCategory": "fas fa-tag",
     },
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-arrow-circle-right",
