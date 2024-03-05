@@ -10,9 +10,15 @@ from product.models import (
 
 
 class ProductCategorySerializer(serializers.ModelSerializer):
+    sub_categories = serializers.SerializerMethodField()
+
     class Meta:
         model = ProductCategory
-        fields = ['id', 'name', 'parent', ]
+        fields = ['id', 'name', 'parent', 'sub_categories', ]
+
+    def get_sub_categories(self, obj):
+        children = obj.children.all()
+        return [{'id': child.id, 'name': child.name} for child in children]
 
 
 class ProductBrandSerializer(serializers.ModelSerializer):
