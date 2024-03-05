@@ -85,6 +85,9 @@ class ProductOption(models.Model):
         verbose_name = '상품 옵션'
         verbose_name_plural = '상품 옵션'
 
+    def __str__(self):
+        return f'{self.size}/{self.color}/{self.stock_quantity}/'
+
     product = models.ForeignKey(
         'Product',
         related_name="options",

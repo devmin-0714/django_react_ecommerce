@@ -63,4 +63,3 @@ class ProductSerializer(serializers.ModelSerializer):
             'images',
             'options'
         ]
-
