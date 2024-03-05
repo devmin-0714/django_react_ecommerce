@@ -18,7 +18,7 @@ class ProductCategory(models.Model):
         related_name='children',
         null=True,
         blank=True,
-        verbose_name='상위 카테고리명'
+        verbose_name='부모 카테고리 FK'
     )
 
 
@@ -53,7 +53,7 @@ class Product(models.Model):
         blank=True,
         verbose_name='카테고리 FK'
     )
-    brand = models.ForeignKey(
+    brand = models.OneToOneField(
         'ProductBrand',
         on_delete=models.PROTECT,
         related_name='brands',
