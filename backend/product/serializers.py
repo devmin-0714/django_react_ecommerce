@@ -12,25 +12,26 @@ from product.models import (
 class ProductCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductCategory
-        fields = ['name', 'parent', ]
+        fields = ['id', 'name', 'parent', ]
 
 
 class ProductBrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductBrand
-        fields = ['name', ]
+        fields = ['id', 'name', ]
 
 
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
-        fields = ['product', 'image', ]
+        fields = ['id', 'product', 'image', ]
 
 
 class ProductOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductOption
         fields = [
+            'id',
             'product',
             'size',
             'color',
