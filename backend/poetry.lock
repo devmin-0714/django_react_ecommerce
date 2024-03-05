@@ -150,6 +150,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "shortuuid"
+version = "1.0.12"
+description = "A generator library for concise, unambiguous and URL-safe UUIDs."
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
 name = "sqlparse"
 version = "0.4.4"
 description = "A non-validating SQL parser."
@@ -181,7 +189,7 @@ python-versions = ">=3.6"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.11.8"
-content-hash = "19e6e6d804f60a343e87a1eb22ee05136005af025fb19c46aadd1b8de5e8b68d"
+content-hash = "12a827fdd68ebcc8ac0ce14a8d21e0c4672d7c1719428ae87e99feeb324d3a7f"
 
 [metadata.files]
 asgiref = []
@@ -196,6 +204,7 @@ packaging = []
 pyjwt = []
 pytz = []
 pyyaml = []
+shortuuid = []
 sqlparse = []
 tzdata = []
 uritemplate = []

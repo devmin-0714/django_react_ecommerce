@@ -12,6 +12,7 @@ djangorestframework-simplejwt = "^5.3.1"
 drf-yasg = "^1.21.7"
 django-cors-headers = "^4.3.1"
 django-jazzmin = "^2.6.0"
+shortuuid = "^1.0.12"
 
 [tool.poetry.dev-dependencies]
 
